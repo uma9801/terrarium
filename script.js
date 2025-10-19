@@ -25,9 +25,11 @@ function dragElement(terrariumElement) {
         console.log(e);
         pos3 = e.clientX;
         pos4 = e.clientY;
+
         document.onpointermove = elementDrag;
         document.onpointerup = stopElementDrag;
     }
+
     function elementDrag(e) {
 	pos1 = pos3 - e.clientX;
 	pos2 = pos4 - e.clientY;
@@ -41,4 +43,22 @@ function dragElement(terrariumElement) {
         document.onpointerup = null;
         document.onpointermove = null;
     }
+
+        // ダブルクリック時に、対象の画像を最前面にする
+    terrariumElement.ondblclick = function(e) { // new: ondblclick event handler
+        terrariumElement.style.zIndex = parseInt(getMaxZIndex()) + 1; // new: parseInt to ensure numeric addition
+    };
+    // Returns the maximum z-index value among all elements in the document
+    function getMaxZIndex() {
+        let maxZ = 0;
+        const elements = document.querySelectorAll('.plant'); // new: querySlectorAll
+        for (let i = 0; i < elements.length; i++) {
+            const z = parseInt(window.getComputedStyle(elements[i]).zIndex, 10); // window.getComputedStyle(elements[i]).zIndex
+            if (!isNaN(z) && z > maxZ) { // new: isNaN - is Not a Number 数値ではない（!で、数値である）
+                maxZ = z;
+            }
+        }
+        return maxZ;
+    }
+
 }
