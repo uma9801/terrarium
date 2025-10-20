@@ -31,13 +31,13 @@ function dragElement(terrariumElement) {
     }
 
     function elementDrag(e) {
-	pos1 = pos3 - e.clientX;
-	pos2 = pos4 - e.clientY;
-	pos3 = e.clientX;
-	pos4 = e.clientY;
-	console.log(pos1, pos2, pos3, pos4);
-	terrariumElement.style.top = terrariumElement.offsetTop - pos2 + 'px';
-	terrariumElement.style.left = terrariumElement.offsetLeft - pos1 + 'px';
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        console.log(pos1, pos2, pos3, pos4);
+        terrariumElement.style.top = terrariumElement.offsetTop - pos2 + 'px';
+        terrariumElement.style.left = terrariumElement.offsetLeft - pos1 + 'px';
     }
     function stopElementDrag() {
         document.onpointerup = null;
@@ -51,7 +51,7 @@ function dragElement(terrariumElement) {
     // Returns the maximum z-index value among all elements in the document
     function getMaxZIndex() {
         let maxZ = 0;
-        const elements = document.querySelectorAll('.plant'); // new: querySlectorAll
+        const elements = document.querySelectorAll('.plant'); // new: querySelectorAll
         for (let i = 0; i < elements.length; i++) {
             const z = parseInt(window.getComputedStyle(elements[i]).zIndex, 10); // window.getComputedStyle(elements[i]).zIndex
             if (!isNaN(z) && z > maxZ) { // new: isNaN - is Not a Number 数値ではない（!で、数値である）
